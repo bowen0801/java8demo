@@ -46,10 +46,19 @@ public class LambdaTest {
 
         //Java 8方式：
         new Thread(() -> System.out.println("In Java8, Lambda expression rocks !!")).start();
-
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
