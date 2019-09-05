@@ -7,9 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,7 +42,10 @@ public class StreamTest {
         }
         System.out.println();
     }
-
+    /**
+     * 字数条件过滤
+     * @throws IOException
+     */
     @Test
     public void testCountWord() throws IOException {
         String content = new String(Files.readAllBytes(Paths.get("alice.txt")), StandardCharsets.UTF_8);
@@ -51,6 +53,72 @@ public class StreamTest {
         long count = words.stream().filter(w -> w.length() > 12).count();
         System.out.println(count);
     }
+    /**
+     * 集合按条件过滤 排序
+     */
+    @Test
+    public void testFilter1() {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1L,"Jame",20));
+        userList.add(new User(2L,"Jame",30));
+        userList.add(new User(3L,"Jame",22));
+        userList.add(new User(4L,"Jame",24));
+        List<User> sortList = userList.stream().filter(user -> user.getAge() < 30 && user.getAge() > 20).sorted(Comparator.comparing(User::getAge)).collect(Collectors.toList());
+        sortList.forEach(user->{
+            System.out.println("id:"+user.getId()+" name:"+user.getName()+" "+user.getAge());
+        });
+    }
+    /**
+     * List根据里边对象某个属性转为Map  toMap
+     */
+    @Test
+    public void testMap1() {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1L,"Jame1",20));
+        userList.add(new User(2L,"Jame2",30));
+        userList.add(new User(3L,"Jame3",22));
+        userList.add(new User(4L,"Jame4",24));
+        Map<Long, User> map = userList.stream().collect(Collectors.toMap(User::getId, Function.identity()));
+        for(Long key : map.keySet()) {
+            System.out.println("key:"+key+" value:"+map.get(key).getName());
+        }
+    }
+
+    /**
+     * List根据里边对象某个属性转为Map  toMap
+     */
+    @Test
+    public void testMap2() {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1L,"Jame1",20));
+        userList.add(new User(2L,"Jame2",30));
+        userList.add(new User(3L,"Jame3",22));
+        userList.add(new User(4L,"Jame4",24));
+        Map<Long, User> map = userList.stream().collect(Collectors.toMap(User::getId, user->user));
+        for(Long key : map.keySet()) {
+            System.out.println("key:"+key+" value:"+map.get(key).getName());
+        }
+    }
+
+    /**
+     * List根据里边对象某个属性转为Map  toMap
+     */
+    @Test
+    public void testMap3() {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1L,"Jame1",20));
+        userList.add(new User(2L,"Jame2",30));
+        userList.add(new User(3L,"Jame3",22));
+        userList.add(new User(4L,"Jame4",24));
+        Map<Long, String> map = userList.stream().collect(Collectors.toMap(User::getId,User::getName));
+        for(Long key : map.keySet()) {
+            System.out.println("key:"+key+" value:"+map.get(key));
+        }
+    }
+
+
+
+
     /**
      * 创建流
      * @throws IOException
@@ -128,6 +196,26 @@ public class StreamTest {
         Stream<String> longestFirst = words.sorted(Comparator.comparing(String::length).reversed());
         showMore("longestFirst",longestFirst);
     }
+    /**
+     * 字符串处理成Long的集合
+     */
+    @Test
+    public void test6() {
+        String ids = "1,2,3,4,5,6";
+        List<Long> idList = Arrays.stream(ids.split(",")).map(Long::valueOf).collect(Collectors.toList());
+        idList.forEach(id->{
+            System.out.println(id);
+        });
+    }
+
+    /*private static User buildUserList() {
+        List<User> list = new ArrayList<User>();
+        list.add(new User(1,"Tom",10));
+
+        return list;
+    }*/
+
+
 
 
 
