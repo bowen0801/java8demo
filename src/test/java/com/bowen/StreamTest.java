@@ -215,6 +215,17 @@ public class StreamTest {
         return list;
     }*/
 
+    /**************************************功能示例********************************************/
+    /**
+     * 逗号分隔的字符串转为Long类型的List集合
+     */
+    @Test
+    public void test7() {
+        String pharmacyIds = "-1,100012,122204";
+        List<Long> pharmacyIdList = Arrays.asList(pharmacyIds.split(",")).stream().map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
+        pharmacyIdList.forEach(ph-> System.out.println(ph));
+    }
+
 
 
 
