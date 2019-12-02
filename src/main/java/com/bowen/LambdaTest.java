@@ -15,6 +15,13 @@ public class LambdaTest {
         testForEach();
         testRunnable();
 
+        List<String> cities = Arrays.asList("Milan",
+                "London",
+                "New York",
+                "San Francisco");
+        String citiesCommaSeparated = String.join(",", cities);
+        System.out.println(citiesCommaSeparated);
+
     }
 
     /**
@@ -47,6 +54,9 @@ public class LambdaTest {
         //Java 8方式：
         new Thread(() -> System.out.println("In Java8, Lambda expression rocks !!")).start();
     }
+
+
+
 
 
 

@@ -226,6 +226,17 @@ public class StreamTest {
         pharmacyIdList.forEach(ph-> System.out.println(ph));
     }
 
+    @Test
+    public void testJoin() {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(1L,"Jame",20));
+        userList.add(new User(2L,"Jame",30));
+        userList.add(new User(3L,"Jame",22));
+        userList.add(new User(4L,"Jame",24));
+        String result = userList.stream().map(x -> x.getName()).collect(Collectors.joining(","));
+        System.out.println(result);
+    }
+
 
 
 
