@@ -21,10 +21,10 @@ public class SortTest {
         list.sort(new Comparator<Banner>() {
             @Override
             public int compare(Banner o1, Banner o2) {
-                if (o1.getOrders() != o2.getOrders()){
+                /*if (o1.getOrders() != o2.getOrders()){*/
                     return o1.getOrders() - o2.getOrders();
-                }
-                return o1.getId().intValue() - o2.getId().intValue();
+                /*}*/
+                //return o1.getId().intValue() - o2.getId().intValue();
             }
         });
         for(Banner banner : list) {

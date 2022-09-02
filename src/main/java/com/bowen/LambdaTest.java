@@ -1,5 +1,9 @@
 package com.bowen;
+import org.junit.Test;
+
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 /**
  * description
@@ -21,6 +25,12 @@ public class LambdaTest {
                 "San Francisco");
         String citiesCommaSeparated = String.join(",", cities);
         System.out.println(citiesCommaSeparated);
+        Collections.sort(cities, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return 0;
+            }
+        });
 
     }
 
@@ -33,12 +43,24 @@ public class LambdaTest {
         List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
         for (String feature : features) {
             System.out.println(feature);
+
         }
 
         // Java 8之后：
         List<String> features2 = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
         features.forEach(n -> System.out.println(n));
     }
+
+    @Test
+    public void testForEach2(){
+        //1 list.forEach中不能使用contine和break
+        List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API","bowen");
+        features.forEach( s ->{
+            if (s.equals("bowen")) {//
+            }
+        });
+    }
+
     /**
      * 用lambda表达式实现Runnable
      */
