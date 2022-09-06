@@ -1,3 +1,5 @@
+package com;
+
 import com.alibaba.fastjson.JSON;
 import com.bowen.CmsProduct;
 import com.bowen.Product;
