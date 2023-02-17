@@ -97,6 +97,42 @@ public class StreamTest {
 
 
     }
+
+    /**
+     * filter
+     * findAny
+     * orElse
+     */
+    public void testFilter2(){
+        /*MultipleOrderContext multipleOrderContext = (MultipleOrderContext) this.context;
+        OrderCreateActParam createActParam = (OrderCreateActParam) input;
+        Map<Long, BaseOrderInfo2> baseInfoMap = multipleOrderContext.getBaseInfoMap();
+        Long userId = multipleOrderContext.getUserId();
+        boolean needCheck = baseInfoMap.values()
+                .stream()
+                .filter(baseOrderInfo2 -> baseOrderInfo2.getCoinPay()!=null&& baseOrderInfo2.getCoinPay()>0)
+                .findAny()
+                .orElse(null) != null;
+        if (!needCheck) {
+            return createActParam;
+        }*/
+    }
+
+    /**
+     * filter
+     */
+    public void testFilter3(){
+        /**
+         * List过滤出其中某部分数据重新组成List
+         * filter函数作用
+         * collect函数作用
+         */
+        /*List<Order> orderIds = orderCreateActParam.getOrderList()
+                .stream()
+                .filter(o -> o.getAuditType() == OrderAuditType.SPECIAL_FLAG.getCode())
+                .collect(Collectors.toList());*/
+    }
+
     /**
      * List根据里边对象某个属性转为Map  toMap
      */
@@ -641,6 +677,12 @@ public class StreamTest {
                 paymentList.removeIf(payment->payment.getPaymentId() != PaymentType.onlinePayment.getCode());
             }
         }*/
+    }
+
+    @Test
+    public void testFindFirst(){
+        //Map.Entry<Long, MultipleCalculateShopParam> firstEntry = shopProductParamMap.entrySet().stream().findFirst().get();
+        
     }
 
 
