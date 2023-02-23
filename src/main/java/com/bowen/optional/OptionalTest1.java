@@ -80,4 +80,29 @@ public class OptionalTest1 {
         });*/
     }
 
+    @Test
+    public void test5(){
+        Integer quantity = null;
+        Integer newQuantity = Optional.ofNullable(quantity).orElse(1);
+        System.out.println(newQuantity);
+
+		/*
+		1.使用Optional空判断，避免出现if条件
+		  Optional.ofNullable(presentParam.getQuantity()).orElse(0L).longValue()
+
+		for (PresentParam presentParam : presentList) {
+			ShoppingCartItem item = new ShoppingCartItem();
+			item.setSkuId(presentParam.getSkuId());
+			item.setQuantity(Optional.ofNullable(presentParam.getQuantity()).orElse(0L).longValue());
+			item.setProductId(presentParam.getProductId());
+			item.setPharmacyId(pharmacyId);
+			item.setPromotionId(presentParam.getPromotionId());
+			item.setPromotionType(new Long(PromotionTypeEnum.PRESENT.getCode()));// 标识增加购物车类型
+			list.add(item);
+		}*/
+        Long u = 1L;
+        long result = Optional.ofNullable(u).orElse(0L).longValue();
+        System.out.println(result);
+    }
+
 }

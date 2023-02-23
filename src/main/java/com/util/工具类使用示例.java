@@ -1,10 +1,10 @@
-package com.bowen.util;
+package com.util;
 
 import org.junit.Test;
 
-public class 工具类使用 {
+public class 工具类使用示例 {
     @Test
-    public void test(){
+    public void test1(){
         /**
          * 工具类的使用
          */

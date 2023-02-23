@@ -4,6 +4,7 @@ import com.bowen.User;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,27 +67,9 @@ public class OptionalTest {
 		}*/
 	}
 
-	@Test
-	public void test5(){
 
-		/*
-		1.使用Optional空判断，避免出现if条件
-		  Optional.ofNullable(presentParam.getQuantity()).orElse(0L).longValue()
 
-		for (PresentParam presentParam : presentList) {
-			ShoppingCartItem item = new ShoppingCartItem();
-			item.setSkuId(presentParam.getSkuId());
-			item.setQuantity(Optional.ofNullable(presentParam.getQuantity()).orElse(0L).longValue());
-			item.setProductId(presentParam.getProductId());
-			item.setPharmacyId(pharmacyId);
-			item.setPromotionId(presentParam.getPromotionId());
-			item.setPromotionType(new Long(PromotionTypeEnum.PRESENT.getCode()));// 标识增加购物车类型
-			list.add(item);
-		}*/
-		Long u = 1L;
-		long result = Optional.ofNullable(u).orElse(0L).longValue();
-		System.out.println(result);
-	}
+
 	
 
 }
