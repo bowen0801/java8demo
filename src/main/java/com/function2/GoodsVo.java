@@ -1,6 +1,6 @@
-package com.function;
+package com.function2;
 
-public class GoodsUpdateVo {
+public class GoodsVo {
     private Long skuId;
     private Long qty;
 
