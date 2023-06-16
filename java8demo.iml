@@ -77,5 +77,6 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.5" level="project" />
     <orderEntry type="library" name="Maven: org.hashids:hashids:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: cn.hutool:hutool-all:5.8.0" level="project" />
   </component>
 </module>
