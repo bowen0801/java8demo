@@ -9,38 +9,48 @@ import java.util.concurrent.Executors;
 
 public class CompletableFutureTest {
     public static void main(String[] args) throws JsonProcessingException {
-        //分模块异步查询
-        long beginTime = System.currentTimeMillis();
-        ResultData result = new ResultData();
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-        //任务一查询用户信息
-        CompletableFuture<UserVo> f1 = CompletableFuture.supplyAsync(() -> {
-            UserVo vo = new UserVo().setId(1L).setName("bowen");
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return vo;
-        }, executorService);
-        //任务二查询车型信息
-        CompletableFuture<CarVo> f2 = CompletableFuture.supplyAsync(() -> {
-            CarVo vo = new CarVo().setNo(2L).setCarName("吉利");
-            try {
-                Thread.sleep(20000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return vo;
-        }, executorService);
-        //组装查询信息
-        result.setUser(f1.join()).setCar(f2.join());
+        try {
+            //分模块异步查询
+            long beginTime = System.currentTimeMillis();
+            ResultData result = new ResultData();
+            //任务一查询用户信息
+            CompletableFuture<UserVo> f1 = CompletableFuture.supplyAsync(() -> {
+                UserVo vo = new UserVo().setId(1L).setName("bowen");
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return vo;
+            }, executorService);
+            //任务二查询车型信息
+            CompletableFuture<CarVo> f2 = CompletableFuture.supplyAsync(() -> {
+                CarVo vo = new CarVo().setNo(2L).setCarName("吉利");
+                try {
+                    Thread.sleep(20000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return vo;
+            }, executorService);
+            //组装查询信息
+            result.setUser(f1.join()).setCar(f2.join());
 
-        long endTime = System.currentTimeMillis();
-        System.out.println("耗时："+(endTime-beginTime) +" ms");
 
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(result));
+            long endTime = System.currentTimeMillis();
+            System.out.println("耗时："+(endTime-beginTime) +" ms");
+
+            ObjectMapper mapper = new ObjectMapper();
+            System.out.println(mapper.writeValueAsString(result));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } finally {
+            //executorService如果是局部变量记得使用完要关闭
+            if (executorService != null) {
+                executorService.isShutdown();
+            }
+        }
 
 
     }
