@@ -11,8 +11,8 @@ public class ScheduleTest {
      */
     public static void main(String[] args) {
         System.out.println("开始");
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        //Timer timer = new Timer();
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 System.out.println("执行定时任务");
